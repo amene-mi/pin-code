@@ -60,7 +60,6 @@ const setFocusOnPreviousInput = (currentInput) => {
 }
 
 const setInputValue = async (value) => {
-
   focusedInput.value = value;
   setFocusOnNextInput(focusedInput);
 }
@@ -73,19 +72,17 @@ const handleClick = function () {
   setInputValue(this.innerText);
 }
 
-const onkeyPress = function () {
-  inputs.forEach((input) => {
-    input.addEventListener('keyup', function (event) {
-      if(event.key==="Backspace"){
-        setFocusOnPreviousInput(focusedInput);
-        return;
-      }  
-      setInputValue(input.value);
-    });
-  });
+const onkeyPress = function (event) {
+  if(event.key==="Backspace"){
+    setFocusOnPreviousInput(focusedInput);
+    return;
+  }
+  // TODO: If key is only number
+  setInputValue(event.key);
 };
 
-inputs[0].addEventListener('keypress', onkeyPress);
+document.addEventListener('keydown', onkeyPress);
+
 document.getElementById("clear").addEventListener('click', handleClick);
 function createBtn() {
   var numbers = getValueNumber();
