@@ -45,33 +45,48 @@ const setFocusOnPreviousInput = (currentInput) => {
 
   inputs.forEach((input, index) => {
     if (currentInputRegEx.test(input.id)) {
-      currentInputIndex = index;
+      if (input.value.trim() !== "") {
+        currentInputIndex = index;
+      }
+      else {
+        currentInputIndex = index - 1;
+      }
     }
   });
 
-  if ((currentInputIndex - 1) < 0) return;
-
-  inputs[currentInputIndex - 1].focus();
+  if ((currentInputIndex) < 0) return;
+  inputs[currentInputIndex].value = null;
+  inputs[currentInputIndex].focus();
 }
 
+const setInputValue = async (value) => {
 
-const setInputValue = async (value, id) => {
-  if (id === 'clear') {
-    focusedInput.value = null;
+  focusedInput.value = value;
+  setFocusOnNextInput(focusedInput);
+}
+
+const handleClick = function () {
+  if (this.id === 'clear') {
     setFocusOnPreviousInput(focusedInput);
+    return;
   }
-  else {
-    focusedInput.value = value;
-    setFocusOnNextInput(focusedInput);
-  }
+  setInputValue(this.innerText);
 }
 
-let handleClick = function handleClick() {
-  setInputValue(this.innerText, this.id);
-}
+const onkeyPress = function () {
+  inputs.forEach((input) => {
+    input.addEventListener('keyup', function (event) {
+      if(event.key==="Backspace"){
+        setFocusOnPreviousInput(focusedInput);
+        return;
+      }  
+      setInputValue(input.value);
+    });
+  });
+};
 
+inputs[0].addEventListener('keypress', onkeyPress);
 document.getElementById("clear").addEventListener('click', handleClick);
-
 function createBtn() {
   var numbers = getValueNumber();
   for (var i = 0; i < numbers.length; i++) {
