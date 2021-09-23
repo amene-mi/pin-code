@@ -39,15 +39,38 @@ const setFocusOnNextInput = (currentInput) => {
   inputs[currentInputIndex + 1].focus();
 }
 
-const setInputValue = async (value) => {
-  focusedInput.value = value;
-  setFocusOnNextInput(focusedInput);
+const setFocusOnPreviousInput = (currentInput) => {
+  let currentInputIndex;
+  const currentInputRegEx = new RegExp(currentInput.id);
+
+  inputs.forEach((input, index) => {
+    if (currentInputRegEx.test(input.id)) {
+      currentInputIndex = index;
+    }
+  });
+
+  if ((currentInputIndex - 1) < 0) return;
+
+  inputs[currentInputIndex - 1].focus();
 }
 
+
+const setInputValue = async (value, id) => {
+  if (id === 'clear') {
+    focusedInput.value = null;
+    setFocusOnPreviousInput(focusedInput);
+  }
+  else {
+    focusedInput.value = value;
+    setFocusOnNextInput(focusedInput);
+  }
+}
 
 let handleClick = function handleClick() {
-  setInputValue(this.innerText);
+  setInputValue(this.innerText, this.id);
 }
+
+document.getElementById("clear").addEventListener('click', handleClick);
 
 function createBtn() {
   var numbers = getValueNumber();
