@@ -1,8 +1,18 @@
 const inputs = document.querySelectorAll("input");
 const container = document.getElementById("button-container");
-
+var numberRegex= new RegExp('[0-9]');
 let focusedInput;
 
+function removeNotDigitValue(){
+  inputs.forEach((input)=>{
+    input.addEventListener('input',function(event){
+      if(!numberRegex.test(parseInt(event.target.value))){
+        event.target.value=null;
+      };
+    });
+  });
+}
+removeNotDigitValue();
 function getValueNumber() {
   const arr = [];
   do {
@@ -61,6 +71,8 @@ const setFocusOnPreviousInput = (currentInput) => {
 
 const setInputValue = async (value) => {
   focusedInput.value = value;
+  if(value ===null) return;
+
   setFocusOnNextInput(focusedInput);
 }
 
@@ -77,11 +89,16 @@ const onkeyPress = function (event) {
     setFocusOnPreviousInput(focusedInput);
     return;
   }
-  // TODO: If key is only number
-  setInputValue(event.key);
+  else if(numberRegex.test(parseInt(event.key))){
+      setInputValue(event.key);
+  }
+  else{
+      //setInputValue(null);
+      return;
+  }
 };
 
-document.addEventListener('keydown', onkeyPress);
+document.addEventListener('keypress', onkeyPress);
 
 document.getElementById("clear").addEventListener('click', handleClick);
 function createBtn() {
