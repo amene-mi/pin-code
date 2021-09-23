@@ -60,7 +60,6 @@ const setFocusOnPreviousInput = (currentInput) => {
 }
 
 const setInputValue = async (value) => {
-
   focusedInput.value = value;
   setFocusOnNextInput(focusedInput);
 }
@@ -78,8 +77,10 @@ const onkeyPress = function (event) {
     setFocusOnPreviousInput(focusedInput);
     return;
   }
-  setInputValue(input.value);
+  // TODO: If key is only number
+  setInputValue(event.key);
 };
+
 document.addEventListener('keydown', onkeyPress);
 
 document.getElementById("clear").addEventListener('click', handleClick);
