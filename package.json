@@ -1,0 +1,30 @@
+{
+  "name": "pin-code",
+  "version": "1.0.0",
+  "description": "create pin code form and use keyboard for input",
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/amene-mi/pin-code.git"
+  },
+  "keywords": [
+    "pin-code",
+    "javascript",
+    "random-button"
+  ],
+  "author": "Amene Mohammadi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amene-mi/pin-code/issues"
+  },
+  "homepage": "https://github.com/amene-mi/pin-code#readme",
+  "devDependencies": {
+    "webpack": "^5.54.0",
+    "webpack-cli": "^4.8.0"
+  },
+  "dependencies": {}
+}
