@@ -1,12 +1,12 @@
 const setInputValue = require('./setInputValue');
 const setFocusOnPreviousInput = require('../components/setFocusOnPreviousInput');
 
-function handleClick(inputs, focusedInput) {
-    if (this.id === 'clear') {
+function handleClick(btn, inputs, focusedInput) {
+    if (btn.id === 'clear') {
         setFocusOnPreviousInput(inputs, focusedInput);
         return;
     }
-    setInputValue(inputs, this.innerText, focusedInput);
+    setInputValue(inputs, btn.innerText, focusedInput);
 }
 
 module.exports = handleClick;
