@@ -1,4 +1,4 @@
-const setFocusOnPreviousInput = require('./setFocusOnPreviousInput');
+const setFocusOnPreviousInput = require('../components/setFocusOnPreviousInput');
 const setInputValue = require('./setInputValue');
 
 function onKeyPress(inputs, event, numberRegex, focusedInput) {
