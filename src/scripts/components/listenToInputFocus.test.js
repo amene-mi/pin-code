@@ -6,7 +6,9 @@ const { listenToInputFocus, focusedInput } = require('./listenToInputFocus');
 describe('listen to input focus', () => {
     const inputs = [];
     beforeEach(() => {
-        inputs.push(document.createElement("input"));
+        const input = document.createElement("input");
+        document.body.append(input);
+        inputs.push(input);
     });
     beforeEach(() => {
         listenToInputFocus(inputs);
