@@ -1,8 +1,8 @@
-const createBtn = require('./scripts/input/createButton');
-const handleClick = require('./scripts/events/handleClick');
-const {listenToInputFocus, focusedInput} = require('./scripts/events/listenToInputFocus');
-const onKeyPress = require('./scripts/events/onKeyPress');
-const removeNotDigitValue =  require('./scripts/events/removeNotDigitValue');
+const createBtn = require('./scripts/containers/createButton');
+const handleClick = require('./scripts/containers/handleClick');
+const {listenToInputFocus, focusedInput} = require('./scripts/components/listenToInputFocus');
+const onKeyPress = require('./scripts/containers/onKeyPress');
+const removeNotDigitValue =  require('./scripts/components/removeNotDigitValue');
 
 const inputs = document.querySelectorAll("input");
 

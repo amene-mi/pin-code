@@ -1,4 +1,4 @@
-const {listenToInputFocus} = require('./listenToInputFocus');
+const {listenToInputFocus} = require('../components/listenToInputFocus');
 
 function setFocusOnPreviousInput(inputs, currentInput) {
     let currentInputIndex;

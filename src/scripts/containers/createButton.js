@@ -1,6 +1,6 @@
 const container = document.getElementById("button-container");
-const getValueNumber = require('./getRandomNumber');
-const handleClick = require('../events/handleClick');
+const getValueNumber = require('../components/getRandomNumber');
+const handleClick = require('./handleClick');
 
 function createBtn() {
   var numbers = getValueNumber();

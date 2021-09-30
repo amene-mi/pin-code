@@ -1,4 +1,4 @@
-const setFocusOnNextInput = require('./setFocusOnNextInput');
+const setFocusOnNextInput = require('../components/setFocusOnNextInput');
 
 function setInputValue(inputs, value, focusedInput) {
     let input = inputs;
