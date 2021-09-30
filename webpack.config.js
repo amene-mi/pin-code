@@ -1,5 +1,6 @@
 const path = require('path');
 
+// TODO: Add plugin to copy assets to 'dist'
 module.exports = {
   mode: 'development',
   entry: './src/main.js',
