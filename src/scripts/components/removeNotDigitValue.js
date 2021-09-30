@@ -4,7 +4,7 @@ function removeNotDigitValue(inputs, numberRegex) {
       console.log("input " + event.target.value);
       if (!numberRegex.test(parseInt(event.target.value))) {
         event.target.value = null;
-      };
+      }
     });
   });
 }

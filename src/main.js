@@ -1,17 +1,18 @@
-const createBtn= require('./scripts/input/createButton');
-const handleClick = require('./scripts/events/handleClick');
-const listenToInputFocus = require('./scripts/events/listenToInputFocus');
-const onkeyPress = require('./scripts/events/onkeyPress');
-const removeNotDigitValue =  require('./scripts/events/removeNotDigitValue');
+const createBtn = require('./scripts/containers/createButton');
+const handleClick = require('./scripts/containers/handleClick');
+const {listenToInputFocus, focusedInput} = require('./scripts/components/listenToInputFocus');
+const onKeyPress = require('./scripts/containers/onKeyPress');
+const removeNotDigitValue =  require('./scripts/components/removeNotDigitValue');
+
 const inputs = document.querySelectorAll("input");
-var numberRegex = new RegExp('[0-9]');
-let focusedInput;
 
-removeNotDigitValue(inputs,numberRegex);
+const numberRegex = new RegExp('[0-9]');
 
-document.addEventListener('keyup', (event)=>onkeyPress(inputs,event,numberRegex));
+removeNotDigitValue(inputs, numberRegex);
+
+document.addEventListener('keyup', (event) => onKeyPress(inputs, event, numberRegex, focusedInput));
 // ()=>handleClick(inputs)
-document.getElementById("clear").addEventListener('click', handleClick);
+document.getElementById("clear").addEventListener('click', () => handleClick(inputs, focusedInput));
 
 createBtn(inputs);
 listenToInputFocus(inputs);

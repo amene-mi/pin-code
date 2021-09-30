@@ -15,7 +15,7 @@
   \*********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const createBtn= __webpack_require__(/*! ./scripts/input/createButton */ \"./src/scripts/input/createButton.js\");\r\nconst handleClick = __webpack_require__(/*! ./scripts/events/handleClick */ \"./src/scripts/events/handleClick.js\");\r\nconst listenToInputFocus = __webpack_require__(/*! ./scripts/events/listenToInputFocus */ \"./src/scripts/events/listenToInputFocus.js\");\r\nconst onkeyPress = __webpack_require__(/*! ./scripts/events/onkeyPress */ \"./src/scripts/events/onkeyPress.js\");\r\nconst removeNotDigitValue =  __webpack_require__(/*! ./scripts/events/removeNotDigitValue */ \"./src/scripts/events/removeNotDigitValue.js\");\r\nconst inputs = document.querySelectorAll(\"input\");\r\nvar numberRegex = new RegExp('[0-9]');\r\nlet focusedInput;\r\n\r\nremoveNotDigitValue(inputs,numberRegex);\r\n\r\ndocument.addEventListener('keyup', (event)=>onkeyPress(inputs,event,numberRegex));\r\n// ()=>handleClick(inputs)\r\ndocument.getElementById(\"clear\").addEventListener('click', handleClick);\r\n\r\ncreateBtn(inputs);\r\nlistenToInputFocus(inputs);\r\ninputs[0].focus();\r\n\n\n//# sourceURL=webpack://pin-code/./src/main.js?");
+eval("const createBtn = __webpack_require__(/*! ./scripts/input/createButton */ \"./src/scripts/input/createButton.js\");\r\nconst handleClick = __webpack_require__(/*! ./scripts/events/handleClick */ \"./src/scripts/events/handleClick.js\");\r\nconst {listenToInputFocus, focusedInput} = __webpack_require__(/*! ./scripts/events/listenToInputFocus */ \"./src/scripts/events/listenToInputFocus.js\");\r\nconst onKeyPress = __webpack_require__(/*! ./scripts/events/onkeyPress */ \"./src/scripts/events/onkeyPress.js\");\r\nconst removeNotDigitValue =  __webpack_require__(/*! ./scripts/events/removeNotDigitValue */ \"./src/scripts/events/removeNotDigitValue.js\");\r\n\r\nconst inputs = document.querySelectorAll(\"input\");\r\n\r\nconst numberRegex = new RegExp('[0-9]');\r\n\r\nremoveNotDigitValue(inputs, numberRegex);\r\n\r\ndocument.addEventListener('keyup', (event) => onKeyPress(inputs, event, numberRegex, focusedInput));\r\n// ()=>handleClick(inputs)\r\ndocument.getElementById(\"clear\").addEventListener('click', () => handleClick(inputs, focusedInput));\r\n\r\ncreateBtn(inputs);\r\nlistenToInputFocus(inputs);\r\ninputs[0].focus();\r\n\n\n//# sourceURL=webpack://pin-code/./src/main.js?");
 
 /***/ }),
 
@@ -25,7 +25,7 @@ eval("const createBtn= __webpack_require__(/*! ./scripts/input/createButton */ \
   \*******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const setInputValue = __webpack_require__(/*! ./setInputValue */ \"./src/scripts/events/setInputValue.js\");\r\nconst setFocusOnPreviousInput = __webpack_require__(/*! ./setFocusOnPreviousInput */ \"./src/scripts/events/setFocusOnPreviousInput.js\");\r\nconst inputs = document.querySelectorAll(\"input\");\r\n\r\nfunction handleClick() {\r\n    if (this.id === 'clear') {\r\n        setFocusOnPreviousInput(inputs, focusedInput);\r\n        return;\r\n    }\r\n    setInputValue(inputs, this.innerText);\r\n}\r\n\r\nmodule.exports = handleClick;\n\n//# sourceURL=webpack://pin-code/./src/scripts/events/handleClick.js?");
+eval("const setInputValue = __webpack_require__(/*! ./setInputValue */ \"./src/scripts/events/setInputValue.js\");\r\nconst setFocusOnPreviousInput = __webpack_require__(/*! ./setFocusOnPreviousInput */ \"./src/scripts/events/setFocusOnPreviousInput.js\");\r\n\r\nfunction handleClick(inputs, focusedInput) {\r\n    if (this.id === 'clear') {\r\n        setFocusOnPreviousInput(inputs, focusedInput);\r\n        return;\r\n    }\r\n    setInputValue(inputs, this.innerText);\r\n}\r\n\r\nmodule.exports = handleClick;\n\n//# sourceURL=webpack://pin-code/./src/scripts/events/handleClick.js?");
 
 /***/ }),
 
@@ -35,7 +35,7 @@ eval("const setInputValue = __webpack_require__(/*! ./setInputValue */ \"./src/s
   \**************************************************/
 /***/ ((module) => {
 
-eval("const onInputFocus = (event) => {\r\n    focusedInput = event.target;\r\n    console.log(\"focus \" + focusedInput);\r\n}\r\n\r\nfunction listenToInputFocus(inputs) {\r\n    inputs.forEach((input) => {\r\n        input.addEventListener('focus', onInputFocus);\r\n    });\r\n}\r\n\r\nmodule.exports = listenToInputFocus;\r\n\n\n//# sourceURL=webpack://pin-code/./src/scripts/events/listenToInputFocus.js?");
+eval("let focusedInput;\r\n\r\nconst onInputFocus = (event) => {\r\n    focusedInput = event.target;\r\n    console.log(\"focus \" + focusedInput);\r\n}\r\n\r\nfunction listenToInputFocus(inputs) {\r\n    inputs.forEach((input) => {\r\n        input.addEventListener('focus', onInputFocus);\r\n    });\r\n}\r\n\r\nmodule.exports = {listenToInputFocus, focusedInput};\r\n\n\n//# sourceURL=webpack://pin-code/./src/scripts/events/listenToInputFocus.js?");
 
 /***/ }),
 
@@ -45,7 +45,7 @@ eval("const onInputFocus = (event) => {\r\n    focusedInput = event.target;\r\n 
   \******************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const setFocusOnPreviousInput = __webpack_require__(/*! ./setFocusOnPreviousInput */ \"./src/scripts/events/setFocusOnPreviousInput.js\");\r\nconst setInputValue = __webpack_require__(/*! ./setInputValue */ \"./src/scripts/events/setInputValue.js\");\r\n\r\nfunction onkeyPress(inputs, event, numberRegex) {\r\n    console.log(\"down \" + event.key);\r\n    if (event.key === \"Backspace\") {\r\n        setFocusOnPreviousInput(inputs, focusedInput);\r\n        return;\r\n    }\r\n    else if (numberRegex.test(parseInt(event.key))) {\r\n        setInputValue(inputs,event.key);\r\n    }\r\n    else {\r\n        return;\r\n    }\r\n};\r\n\r\nmodule.exports = onkeyPress;\r\n\n\n//# sourceURL=webpack://pin-code/./src/scripts/events/onkeyPress.js?");
+eval("const setFocusOnPreviousInput = __webpack_require__(/*! ./setFocusOnPreviousInput */ \"./src/scripts/events/setFocusOnPreviousInput.js\");\r\nconst setInputValue = __webpack_require__(/*! ./setInputValue */ \"./src/scripts/events/setInputValue.js\");\r\n\r\nfunction onKeyPress(inputs, event, numberRegex, focusedInput) {\r\n    console.log(\"down \" + event.key);\r\n    if (event.key === \"Backspace\") {\r\n        setFocusOnPreviousInput(inputs, focusedInput);\r\n    } else if (numberRegex.test(parseInt(event.key))) {\r\n        setInputValue(inputs, event.key);\r\n    }\r\n}\r\n\r\nmodule.exports = onKeyPress;\r\n\n\n//# sourceURL=webpack://pin-code/./src/scripts/events/onkeyPress.js?");
 
 /***/ }),
 
@@ -85,7 +85,7 @@ eval("const listenToInputFocus = __webpack_require__(/*! ./listenToInputFocus */
   \*********************************************/
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const setFocusOnNextInput = __webpack_require__(/*! ./setFocusOnNextInput */ \"./src/scripts/events/setFocusOnNextInput.js\");\r\n\r\nfunction setInputValue(inputs, value) {\r\n    let inpuut= inputs;\r\n    focusedInput.value = value;\r\n    if (value === null) return;\r\n\r\n    setFocusOnNextInput(inpuut, focusedInput);\r\n}\r\n\r\nmodule.exports = setInputValue;\n\n//# sourceURL=webpack://pin-code/./src/scripts/events/setInputValue.js?");
+eval("const setFocusOnNextInput = __webpack_require__(/*! ./setFocusOnNextInput */ \"./src/scripts/events/setFocusOnNextInput.js\");\r\n\r\nfunction setInputValue(inputs, value) {\r\n    let inpuut = inputs;\r\n    focusedInput.value = value;\r\n    if (value === null) return;\r\n\r\n    setFocusOnNextInput(inpuut, focusedInput);\r\n}\r\n\r\nmodule.exports = setInputValue;\n\n//# sourceURL=webpack://pin-code/./src/scripts/events/setInputValue.js?");
 
 /***/ }),
 

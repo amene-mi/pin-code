@@ -1,5 +1,3 @@
-const listenToInputFocus = require('./listenToInputFocus');
-
 function setFocusOnPreviousInput(inputs, currentInput) {
     let currentInputIndex;
 
@@ -7,7 +5,6 @@ function setFocusOnPreviousInput(inputs, currentInput) {
 
     inputs.forEach((input, index) => {
         if (currentInputRegEx.test(input.id)) {
-            listenToInputFocus(inputs);
             if (input.value.trim() !== "") {
                 currentInputIndex = index;
             }
