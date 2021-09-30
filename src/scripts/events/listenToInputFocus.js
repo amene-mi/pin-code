@@ -1,7 +1,11 @@
-let focusedInput;
+let _focusedInput;
+
+function focusedInput() {
+    return _focusedInput;
+}
 
 const onInputFocus = (event) => {
-    focusedInput = event.target;
+    _focusedInput = event.target;
     console.log("focus " + focusedInput);
 }
 
