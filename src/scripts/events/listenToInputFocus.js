@@ -1,3 +1,5 @@
+let focusedInput;
+
 const onInputFocus = (event) => {
     focusedInput = event.target;
     console.log("focus " + focusedInput);
@@ -9,4 +11,4 @@ function listenToInputFocus(inputs) {
     });
 }
 
-module.exports = listenToInputFocus;
+module.exports = {listenToInputFocus, focusedInput};

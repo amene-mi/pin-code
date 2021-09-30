@@ -1,11 +1,11 @@
 const setFocusOnNextInput = require('./setFocusOnNextInput');
 
-function setInputValue(inputs, value) {
-    let inpuut = inputs;
+function setInputValue(inputs, value, focusedInput) {
+    let input = inputs;
     focusedInput.value = value;
     if (value === null) return;
 
-    setFocusOnNextInput(inpuut, focusedInput);
+    setFocusOnNextInput(input, focusedInput);
 }
 
 module.exports = setInputValue;
