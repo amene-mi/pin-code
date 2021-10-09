@@ -10,9 +10,10 @@ const numberRegex = new RegExp('[0-9]');
 
 removeNotDigitValue(inputs, numberRegex);
 
-document.addEventListener('keyup', (event) => onKeyPress(inputs, event, numberRegex, focusedInput));
+document.addEventListener('keyup', (event) => onKeyPress(inputs, event, numberRegex, focusedInput()));
 // ()=>handleClick(inputs)
-document.getElementById("clear").addEventListener('click', () => handleClick(inputs, focusedInput));
+debugger;
+document.getElementById("clear").addEventListener('click', (event) => handleClick(event.target,inputs, focusedInput()));
 
 createBtn(inputs);
 listenToInputFocus(inputs);
